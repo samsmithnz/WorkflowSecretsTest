@@ -27,4 +27,4 @@ jobs:
         run: |
           echo Hello, step secret ${{ env.step_secret }}
           echo Hello, job secret ${{ env.job_secret }}
-          echo Hell, step double check ${{ jobs.build.step1.env.step_secret }}
+          echo Hell, step double check ${{ steps.step1.env.step_secret }}
