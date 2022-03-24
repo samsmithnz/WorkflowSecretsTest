@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env: 
+      job_secret: "raccoon"
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a one-line script
+        id: step1
+        env: 
+          step_secret: "squirrel"
+        run: echo Hello, step secret ${{ env.step_secret }}
+      - name: Run a multi-line script
+        run: |
+          echo Hello, step secret ${{ env.step_secret }}
+          echo Hello, job secret ${{ env.job_secret }}
+          echo Hell, step double check ${{ build.step1.env.step_secret }}
